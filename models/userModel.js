@@ -33,6 +33,25 @@ const userSchema = new mongoose.Schema({
     },
     select: false,
   },
+  age: {
+    type: Number,
+    minlength: [
+      14,
+      "Your age should be greater or equal than 14 in order to use this application",
+    ],
+    required: [true, "Please fill up your age field"],
+  },
+  weight: {
+    type: Number,
+    required: [true, "Please provide your weight"],
+  },
+  gender: {
+    type: String,
+    enum: {
+      values: ["male", "female", "other"],
+      message: "You can choose either of male, female or other",
+    },
+  },
 });
 
 userSchema.pre("save", async function (next) {
